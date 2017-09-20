@@ -127,12 +127,6 @@ public class Calculate {
 		int ret_val = Integer.parseInt(bin, 10);
 		return ret_val;
 	}
-	public static int ConvertToDecimal(String val) 
-	{
-		
-//		String bin = Integer.toString(val, 10);
-		int ret_val = Integer.decode(val);
-		return ret_val;
-	}
+	
 
 }
