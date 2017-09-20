@@ -31,14 +31,14 @@ public class Test {
 		
 		// Declare variables
 		Integer i0 = 9,
-				i00 = 4096,
+				i00 = 3737,
 			i1 = 4;
-		String	h3 = "0x01ae",
-			h4 = "0xff01",
-		    o5 = "0777",
-			o6 = "0656",
-		    b7 = "0b01000101",
-			b8 = "0b00100101";
+		Integer	h3 = 0x01ae,
+			h4 = 0xff01,
+		    o5 = 0777,
+			o6 = 0656,
+		    b7 = 0b01000101,
+			b8 = 0b00100101;
 		Long l0 = 9l,
 			l2 = 16l;
 		
@@ -95,16 +95,19 @@ public class Test {
 		System.out.format(strFLogFmt, Double.class.getTypeName(), d00, d11, Calculate.Exp(d00, d11));
 		
 		String str10Convert = "Converting, %s, to base 10: %d\n";
-		String str01Convert = "Converting, %s, to base 2: %d\n";
-		String str8Convert = "Converting, %s, to base 8: %d\n";
-		String str16Convert = "Converting, %s, to base 16: %d\n";
+		String str01Convert = "Converting, %s, to base 2: %s\n";
+		String str8Convert = "Converting, %s, to base 8: %s\n";
+		String str16Convert = "Converting, %s, to base 16: %s\n";
 		
-		System.out.format(str10Convert, (h4).toUpperCase(), Calculate.ConvertToDecimal(h4));
-		System.out.format(str10Convert, (o5), Calculate.ConvertToDecimal(o5));
-		System.out.format(str10Convert, (b8), Calculate.ConvertToDecimal(b8));
+		System.out.format(str10Convert, Integer.toHexString(h4).toUpperCase(), Calculate.ConvertToDecimal(h4));
+		System.out.format(str10Convert, Integer.toOctalString(o5), Calculate.ConvertToDecimal(o5));
+		System.out.format(str10Convert, Integer.toBinaryString(b8), Calculate.ConvertToDecimal(b8));
 		
-		System.out.format(str16Convert, Integer.toString(i00), Calculate.ConvertToHexadecimal(i00));
-//		System.out.format(str16Convert, b7, Calculate.ConvertToHexadecimal(b7));
+		System.out.format(str16Convert, Integer.toString(i00), Calculate.ConvertToHexadecimal(i00.toString(), Base.DECIMAL));
+		System.out.format(str8Convert, Integer.toString(i00), Calculate.ConvertToOctal(i00, Base.DECIMAL));
+		System.out.format(str01Convert, Integer.toString(i00), Calculate.ConvertToBinary(i00.toString(), Base.DECIMAL));
+		System.out.format(str16Convert, Integer.toBinaryString(b7), Calculate.ConvertToHexadecimal(Integer.toBinaryString(b7), Base.BINARY));
+		System.out.format(str16Convert, Integer.toBinaryString(b7), Calculate.ConvertToHexadecimal(b7, Base.BINARY));
 		//System.out.flush();
 				
 				

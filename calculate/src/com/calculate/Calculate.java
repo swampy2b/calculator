@@ -3,6 +3,48 @@ import java.math.*;
 
 public class Calculate {
 	
+	//Operations
+	private static int _getRadix(Base base)
+	{
+		int radix = 0; // default to decimal
+		switch (base)
+		{
+		case BINARY:
+			radix = 2;
+			break;
+		case OCTAL:
+			radix = 8;
+			break;
+		case HEX:
+			radix = 16;
+			break;
+		default:
+			radix = 10;
+		}
+		
+		return radix;
+	}
+	
+	private static String _getNumberString(int num, Base base)
+	{
+		String str = "";
+		switch (base)
+		{
+		case BINARY:
+			str = Integer.toBinaryString(num);
+			break;
+		case OCTAL:
+			str = Integer.toOctalString(num);
+			break;
+		case HEX:
+			str = Integer.toHexString(num);
+			break;
+		default:
+			str = Integer.toString(num);
+		}
+		return str;
+	}
+	
 	//Addition
 	public static int Add(int a, int b) { return (a+b);}
 	public static long Add(long a, long b) { return (a+b);}
@@ -41,29 +83,55 @@ public class Calculate {
 	public static double Exp(double a, double b) { return Math.pow(a, b);}
 
 	//Base Conversion
-	public static int ConvertToBinary(int val)
+	public static String ConvertToBinary(int val, Base base)
 	{
-		String bin = Integer.toBinaryString(val);
-		int ret_val = Integer.parseInt(bin, 2);
-		return ret_val;
+//		String bin = Integer.toBinaryString(val);
+//		int ret_val = Integer.parseInt(bin, 2);
+		return Integer.toString(Integer.parseInt(_getNumberString(val, base), _getRadix(base)), 2);
 	}
-	public static int ConvertToHexadecimal(int val) 
+	public static String ConvertToBinary(String val, Base base)
+	{
+//		String bin = Integer.toBinaryString(val);
+//		int ret_val = Integer.parseInt(bin, 2);
+		return Integer.toString(Integer.parseInt(val, _getRadix(base)), 2);
+	}
+	public static String ConvertToHexadecimal(int val, Base base) 
 	{
 		
-		String bin = Integer.toString(val, 16);
-		int ret_val = Integer.parseInt(bin, 16);
-		return ret_val;
+//		String bin = Integer.toString(val, 16);
+//		int ret_val = Integer.parseInt(bin, 16);
+		return Integer.toString(Integer.parseInt(_getNumberString(val, base), _getRadix(base)), 16).toUpperCase();
 	}
-	public static int ConvertToOctal(int val) 
+	public static String ConvertToHexadecimal(String val, Base base) 
 	{
-		String bin = Integer.toOctalString(val);
-		int ret_val = Integer.parseInt(bin, 8);
+		
+//		String bin = Integer.toString(val, 16);
+//		int ret_val = Integer.parseInt(bin, 16);
+		return Integer.toString(Integer.parseInt(val, _getRadix(base)), 16).toUpperCase();
+	}
+	public static String ConvertToOctal(int val, Base base) 
+	{
+//		String bin = Integer.toOctalString(val);
+//		int ret_val = Integer.parseInt(bin, 8);
+		return Integer.toString(Integer.parseInt(_getNumberString(val, base), _getRadix(base)), 8);
+	}
+	public static String ConvertToOctal(String val, Base base) 
+	{
+//		String bin = Integer.toOctalString(val);
+//		int ret_val = Integer.parseInt(bin, 8);
+		return Integer.toString(Integer.parseInt(val, _getRadix(base)), 8);
+	}
+	public static int ConvertToDecimal(int val) 
+	{
+		String bin = Integer.toString(val, 10);
+		int ret_val = Integer.parseInt(bin, 10);
 		return ret_val;
 	}
 	public static int ConvertToDecimal(String val) 
 	{
-		//String bin = Integer.toString(val, 10);
-		int ret_val = Integer.parseInt(val, 10);
+		
+//		String bin = Integer.toString(val, 10);
+		int ret_val = Integer.decode(val);
 		return ret_val;
 	}
 

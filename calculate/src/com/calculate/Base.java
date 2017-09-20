@@ -1,8 +1,9 @@
 package com.calculate;
 
 public enum Base {
-	DECIMAL,
+	
 	BINARY,
 	OCTAL,
+	DECIMAL,
 	HEX
 }
